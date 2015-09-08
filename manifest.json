@@ -1,0 +1,26 @@
+{
+  "manifest_version": 2,
+
+  "name": "Search MIT Courses and view subject evaluations and HKN Underground Guide Results!",
+  "description": "This extension shows a description of the MIT course, as well as the difficulty rating for Course 6 classes.",
+  "version": "1.0",
+
+  "permissions": [
+    "activeTab",
+    "tabs",
+    "storage",
+    "https://ajax.googleapis.com/",
+    "http://student.mit.edu/catalog/*",
+    "https://hkn.mit.edu/new_ug/search/*",
+    "http://hkn.mit.edu/new_ug/search/*"
+  ],
+  "content_scripts": [
+   {
+     "matches": ["<all_urls>"],
+     "js": ["jquery-2.1.4.min.js", "jquery-ui.min.js","jquery-ui.js","selection.js"],
+     "run_at": "document_end",
+     "all_frames": true,
+     "css": ["contentscripts.css","jquery-ui.css"]
+   }
+ ]
+}
