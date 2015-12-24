@@ -34,11 +34,15 @@ document.addEventListener('mouseup', function(e) {
             //Extra regex to ensure icons get displayed properly.
             subject = subject.replace(new RegExp(originalIconSource, 'g'), "src=\"http://student.mit.edu/icns");
             subject = subject.replace(new RegExp(originalLink, 'g'), "href=\"http://student.mit.edu/catalog/m");
-            if (subject.match(/<h3>/g)
-                .length == 1) {
+
+            try {
+            if (subject.match(/<h3>/g).length == 1) {
                 subject = subject.substring(subject.indexOf('<h3>')); 
             }
-           
+           }
+           catch(err){
+                //console.log("No length found");
+           }
             subject = subject + '\n <div id="block1"><a style="font-weight:bold" href="https://edu-apps.mit.edu/ose-rpt/subjectEvaluationSearch.htm?search=Search&subjectCode=' + encodeURIComponent(sel) + '">Subject Evaluations</a></div>';
             var r = '#results';
             var d = 'data-geo=""';
@@ -72,11 +76,17 @@ document.addEventListener('mouseup', function(e) {
 $(document).on('click', function(e) {
     if ($('.selection_bubble').html() != '' && (e.target.className != "selection_bubble")) {
         
+        try{
+
         bubbleDOM.style.top = '0';
         bubbleDOM.style.left = '0';
         bubbleDOM.innerHTML = '';
         $('.selection_bubble').remove();
-        
+        }
+        catch(err) {
+
+           // console.log("No div found");
+        }
     }
 });
 
